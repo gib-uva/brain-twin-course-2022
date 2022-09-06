@@ -98,6 +98,5 @@ spell_acc_per_seq = erp_spellers.command_decoding_accuracy_per_seq(
     spell_result_per_seq,
     [rec.erpspellerdata.spell_target]
 )
-
 utils.print_acc_per_seq(spell_acc_per_seq)
 
