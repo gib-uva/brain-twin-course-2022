@@ -5,6 +5,7 @@ Repository with the code of the session "Case study: signal processing in row-co
 Use this code to follow the practical class and change parameters while they are explained.
 
 ## Instructions
+
 1 - Download the contents of the repository
 2 - Open the project with your favorite Python IDE (e.g., Pycharm)
 2 - Create a new Python environment with your favorite tool (venv, conda, poetry, etc)
