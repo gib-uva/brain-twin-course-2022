@@ -1,6 +1,7 @@
 import numpy as np
 from tabulate import tabulate
 import pickle
+import matplotlib.pyplot as plt
 
 
 def print_acc_per_seq(acc_per_seq):
@@ -20,3 +21,14 @@ def save_model(filename, clf):
 def load_model(filename):
     with open('models/%s.mdl' % filename, 'rb') as f:
         return pickle.load(f)
+
+
+def plot_eeg(signal, fs, title=""):
+    t = np.linspace(0, int(signal.shape[0]/fs), signal.shape[0])
+    for i in range(signal.shape[1]):
+        plt.plot(t, signal[:, i] + i * 10 * np.mean(np.std(signal, axis=0)),
+                 'b')
+    plt.ylabel('Amplitude ($\mu$V)')
+    plt.xlabel('Time (s)')
+    plt.title(title)
+    plt.show()

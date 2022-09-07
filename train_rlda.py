@@ -36,14 +36,17 @@ print(tabulate(data_exploration))
 #%% PRE-PROCESSING
 
 # Band pass filter
-bp_filt = medusa.FIRFilter(
-    order=1500,
+utils.plot_eeg(rec.eeg.signal, rec.eeg.fs, "Raw EEG")
+bp_filt = medusa.IIRFilter(
+    order=7,
     cutoff=[1, 10],
     btype='bandpass',
-    filt_method='filtfilt',
     axis=0
 )
-rec.eeg.signal = bp_filt.fit_transform(rec.eeg.signal, rec.eeg.fs)
+bp_filt.fit(rec.eeg.fs)
+bp_filt.display()
+rec.eeg.signal = bp_filt.transform(rec.eeg.signal)
+utils.plot_eeg(rec.eeg.signal, rec.eeg.fs, "After IIR")
 
 # Common average reference
 rec.eeg.signal = medusa.car(rec.eeg.signal)

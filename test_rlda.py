@@ -36,11 +36,17 @@ print(tabulate(data_exploration))
 #%% PRE-PROCESSING
 
 # Band pass filter
-bp_filt = medusa.FIRFilter(
-    order=1500,
+# bp_filt = medusa.FIRFilter(
+#     order=1500,
+#     cutoff=[1, 10],
+#     btype='bandpass',
+#     filt_method='filtfilt',
+#     axis=0
+# )
+bp_filt = medusa.IIRFilter(
+    order=7,
     cutoff=[1, 10],
     btype='bandpass',
-    filt_method='filtfilt',
     axis=0
 )
 rec.eeg.signal = bp_filt.fit_transform(rec.eeg.signal, rec.eeg.fs)
